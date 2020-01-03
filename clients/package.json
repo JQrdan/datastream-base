@@ -1,0 +1,20 @@
+{
+  "name": "datastream-producer",
+  "version": "0.0.1",
+  "description": "Basic Kafka Producer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "producer": "node producer/index.js",
+    "consumer": "node consumer/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "datastream-base"
+  },
+  "author": "Jordan Tucker",
+  "license": "ISC",
+  "dependencies": {
+    "kafka-node": "^5.0.0"
+  }
+}
