@@ -59,3 +59,8 @@ volumes:
     driver: local
   kafka03:
     driver: local
+
+networks:
+  default:
+    external:
+      name: datastream-network

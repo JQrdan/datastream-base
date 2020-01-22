@@ -6,6 +6,4 @@ services:
       - "5601:5601"
     environment:
       SERVER_NAME: kibana
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
-    networks:
-      - elastic
+      ELASTICSEARCH_HOSTS: http://es01:9200
