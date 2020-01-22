@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  kafkaconnect:
+    image: datastream-connect:0.0.3
+    hostname: kafkaconnect
+    ports:
+      - "8083:8083"
