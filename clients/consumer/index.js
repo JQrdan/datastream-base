@@ -1,7 +1,7 @@
 let kafka = require('kafka-node');
 let config = require('../config.js');
 
-let client = new kafka.KafkaClient({ kafkaHost: 'localhost:9092' });
+let client = new kafka.KafkaClient({ kafkaHost: config.KAFKA_SERVER });
 let topics = [{ topic: config.KAFKA_TOPIC }];
 let options = { autoCommit: false, fetchMaxWaitMs: 1000, fetchMaxBytes: 1024 * 1024 };
 
