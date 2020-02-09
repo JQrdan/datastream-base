@@ -51,6 +51,15 @@ services:
       - zookeeper
     volumes:
       - kafka03:/var/lib/kafka/data
+  kafkarest:
+    image:  confluentinc/cp-kafka-rest:5.4.0
+    hostname: kafkarest
+    ports: 
+      - "8082:8082"
+    environment:
+      KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_REST_LISTENERS: http://kafkarest:8082
+      KAFKA_REST_HOST_NAME: kafkarest
 
 volumes:
   kafka01:
