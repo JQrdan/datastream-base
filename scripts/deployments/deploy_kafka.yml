@@ -18,11 +18,11 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092
       KAFKA_BROKER_ID: 1
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
     depends_on:
       - zookeeper
-    volumes:
-      - kafka01:/var/lib/kafka/data
+    # volumes:
+    #   - kafka01:/var/lib/kafka/data
   kafka2:
     image: confluentinc/cp-kafka
     hostname: kafka2
@@ -32,11 +32,11 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9093
       KAFKA_BROKER_ID: 2
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
     depends_on:
       - zookeeper
-    volumes:
-      - kafka02:/var/lib/kafka/data
+    # volumes:
+    #   - kafka02:/var/lib/kafka/data
   kafka3:
     image: confluentinc/cp-kafka
     hostname: kafka3
@@ -46,11 +46,11 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka3:9094
       KAFKA_BROKER_ID: 3
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
     depends_on:
       - zookeeper
-    volumes:
-      - kafka03:/var/lib/kafka/data
+    # volumes:
+    #   - kafka03:/var/lib/kafka/data
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     hostname: kafkarest
