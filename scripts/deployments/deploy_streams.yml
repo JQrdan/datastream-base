@@ -2,7 +2,12 @@ version: '3.7'
 services:
   details:
     image: datastream-stream-details:1.0.0
-    scale: 3
   genres:
     image: datastream-stream-genres:1.0.0
-    scale: 3
+  songs:
+    image: datastream-stream-songs:1.0.0
+
+networks:
+  default:
+    external:
+      name: datastream-network
