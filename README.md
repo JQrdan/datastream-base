@@ -1,5 +1,6 @@
 # datastream-base
-Base repo for Final year project at University of Exeter. This includes the deployment file to start the system as well as a node Kafka producer and Kafka Consumer to check that Kafka is working correctly.
+
+Base repo for Final year project at University of Exeter. This includes the deployment scripts to run the full system.
 
 ### Prereqs
 

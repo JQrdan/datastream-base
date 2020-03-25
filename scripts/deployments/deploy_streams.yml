@@ -2,10 +2,22 @@ version: '3.7'
 services:
   details:
     image: datastream-stream-details:1.0.0
+    extra_hosts:
+      - "kafka1:$(KAFKA1)"
+      - "kafka2:$(KAFKA2)"
+      - "kafka3:$(KAFKA3)"
   genres:
     image: datastream-stream-genres:1.0.0
+    extra_hosts:
+      - "kafka1:$(KAFKA1)"
+      - "kafka2:$(KAFKA2)"
+      - "kafka3:$(KAFKA3)"
   songs:
     image: datastream-stream-songs:1.0.0
+    extra_hosts:
+      - "kafka1:$(KAFKA1)"
+      - "kafka2:$(KAFKA2)"
+      - "kafka3:$(KAFKA3)"
 
 networks:
   default:

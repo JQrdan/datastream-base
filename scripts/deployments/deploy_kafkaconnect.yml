@@ -1,10 +1,14 @@
 version: '3.7'
 services:
   kafkaconnect:
-    image: datastream-connect:0.0.6
+    image: datastream-connect:1.0.0
     hostname: kafkaconnect
     ports:
       - "8083:8083"
+    extra_hosts:
+      - "kafka1:$(KAFKA1)"
+      - "kafka2:$(KAFKA2)"
+      - "kafka3:$(KAFKA3)"
 
 networks:
   default:
