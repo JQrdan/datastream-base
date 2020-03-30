@@ -21,3 +21,9 @@ To properly shut down the system, run:
 ```
 docker-compose -f deploy_base.yml down
 ```
+
+Before running elasticsearch on cloud, you may need to run the command
+
+`sudo sysctl -w vm.max_map_count=262144`
+
+To get it to work

@@ -6,12 +6,12 @@ services:
     ports:
       - "8083:8083"
     extra_hosts:
-      - "kafka1:$(KAFKA)"
-      - "kafka2:$(KAFKA)"
-      - "kafka3:$(KAFKA)"
-      - "es01:$(ES0)"
-      - "es02:$(ES0)"
-      - "es03:$(ES0)"
+      - "kafka1:${KAFKA}"
+      - "kafka2:${KAFKA}"
+      - "kafka3:${KAFKA}"
+      - "es01:${ES0}"
+      - "es02:${ES0}"
+      - "es03:${ES0}"
 
 networks:
   default:
