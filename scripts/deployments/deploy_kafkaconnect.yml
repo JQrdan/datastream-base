@@ -9,9 +9,9 @@ services:
       - "kafka1:${KAFKA}"
       - "kafka2:${KAFKA}"
       - "kafka3:${KAFKA}"
-      - "es01:${ES0}"
-      - "es02:${ES0}"
-      - "es03:${ES0}"
+      - "es01:${ELASTIC}"
+      - "es02:${ELASTIC}"
+      - "es03:${ELASTIC}"
 
 networks:
   default:
