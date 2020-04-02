@@ -41,7 +41,6 @@ clone:
 	git clone https://github.com/JQrdan/datastream-producer.git ../datastream-producer
 
 build:
-	docker network create datastream-network
 	docker build ../datastream-connect -t datastream-connect:1.0.0
 	docker build ../datastream-app -t datastream-app:1.0.0
 	docker build -f ../datastream-streams/Dockerfile-details -t datastream-stream-details:1.0.0 ../datastream-streams/
