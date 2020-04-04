@@ -20,8 +20,11 @@ sudo sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
+# update apt repo now that we've added docker repo
+sudo apt-get update
+
 # install docker
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install docker-ce
 
 # install java
 sudo apt-get install default-jre
@@ -36,3 +39,5 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 docker network create datastream-network
+
+make all
