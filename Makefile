@@ -52,6 +52,9 @@ build:
 start:
 	sudo docker-compose -f scripts/deployments/deploy_all.yml up
 
+stop:
+	sudo docker-compose -f scripts/deployments/deploy_all.yml down
+
 all:
 	$(MAKE) clone
 	$(MAKE) build
