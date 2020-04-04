@@ -108,9 +108,9 @@ services:
   topicshook:
     image: datastream-topics-hook:1.0.0
     depends_on: 
-      - kafka01
-      - kafka02
-      - kafka03
+      - kafka1
+      - kafka2
+      - kafka3
   kafkaconnect:
     image: datastream-connect:1.0.0
     ports:
