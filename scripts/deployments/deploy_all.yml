@@ -50,14 +50,14 @@ services:
         hard: -1
     volumes:
       - data03:/usr/share/elasticsearch/data
-      zookeeper:
-        image: confluentinc/cp-zookeeper
-        ports:
-          - "2181:2181"
-        environment:
-          ZOOKEEPER_CLIENT_PORT: 2181
-          ZOOKEEPER_TICK_TIME: 2000
-          ZOOKEEPER_SYNC_LIMIT: 2
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SYNC_LIMIT: 2
   kafka1:
     image: confluentinc/cp-kafka
     ports:
@@ -105,11 +105,14 @@ services:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
+  topicshook:
+    image: datastream-topics-hook:1.0.0
+    depends_on: kafka
   kafkaconnect:
     image: datastream-connect:1.0.0
-    hostname: kafkaconnect
     ports:
       - "8083:8083"
+    depends_on: topicshook
   kibana:
     image: docker.elastic.co/kibana/kibana:7.5.2
     ports:
@@ -119,10 +122,13 @@ services:
       ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
   details:
     image: datastream-stream-details:1.0.0
+    depends_on: topicshook
   genres:
     image: datastream-stream-genres:1.0.0
+    depends_on: topicshook
   songs:
     image: datastream-stream-songs:1.0.0
+    depends_on: topicshook
     
 volumes:
   data01:

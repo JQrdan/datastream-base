@@ -39,6 +39,7 @@ clone:
 	git clone https://github.com/JQrdan/datastream-streams.git ../datastream-streams
 	git clone https://github.com/JQrdan/datastream-connect.git ../datastream-connect
 	git clone https://github.com/JQrdan/datastream-producer.git ../datastream-producer
+	git clone https://github.com/JQrdan/datastream-hooks.git ../datastream-hooks
 
 build:
 	docker build ../datastream-connect -t datastream-connect:1.0.0
@@ -46,9 +47,10 @@ build:
 	docker build -f ../datastream-streams/Dockerfile-details -t datastream-stream-details:1.0.0 ../datastream-streams/
 	docker build -f ../datastream-streams/Dockerfile-genres -t datastream-stream-genres:1.0.0 ../datastream-streams/
 	docker build -f ../datastream-streams/Dockerfile-songs -t datastream-stream-songs:1.0.0 ../datastream-streams/
+	docker build ../datastream-hooks -t datastream-topics-hook:1.0.0
 
 start:
-	./scripts/standup.sh
+	docker-compose -f scripts/deployments/deploy_all.yml up
 
 all:
 	$(MAKE) clone
