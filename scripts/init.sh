@@ -40,4 +40,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 sudo docker network create datastream-network
 
+# increase virtual memory for elastic
+sudo sysctl -w vm.max_map_count=262144
+
 make all
