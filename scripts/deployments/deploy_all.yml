@@ -2,6 +2,8 @@ version: '3.7'
 services:
   app:
     image: datastream-app:1.0.0
+    ports:
+      - "3000:3000"
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     hostname: elasticsearch
@@ -136,6 +138,15 @@ services:
     image: datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
+  metrics:
+    image: datastream-metrics:1.0.0
+    depends_on: 
+      - kafka1
+      - kafka2
+      - kafka3
+      - es01
+      - es02
+      - es03
     
 volumes:
   data01:
