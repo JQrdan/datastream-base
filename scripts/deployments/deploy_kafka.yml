@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper
+    image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
     environment:
@@ -9,40 +9,49 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_SYNC_LIMIT: 2
   kafka1:
-    image: confluentinc/cp-kafka
+    image: datastream-kafka:1.0.0
     ports:
       - "9092:9092"
+      - "8777:8778"
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092
+      KAFKA_LISTENERS: PLAINTEXT://:9092
       KAFKA_BROKER_ID: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_JOLOKIA_PORT: 8778
     depends_on:
       - zookeeper
     volumes:
       - kafka01:/var/lib/kafka/data
   kafka2:
-    image: confluentinc/cp-kafka
+    image: datastream-kafka:1.0.0
     ports:
       - "9093:9093"
+      - "8778:8778"
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9093
+      KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_BROKER_ID: 2
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_JOLOKIA_PORT: 8778
     depends_on:
       - zookeeper
     volumes:
       - kafka02:/var/lib/kafka/data
   kafka3:
-    image: confluentinc/cp-kafka
+    image: datastream-kafka:1.0.0
     ports:
       - "9094:9094"
+      - "8779:8778"
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka3:9094
+      KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_BROKER_ID: 3
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_JOLOKIA_PORT: 8778
     depends_on:
       - zookeeper
     volumes:
