@@ -147,6 +147,10 @@ services:
     image: datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
+  artists:
+    image: datastream-stream-artists:1.0.0
+    depends_on: 
+      - topicshook
   metrics:
     image: datastream-metrics:1.0.0
     depends_on: 

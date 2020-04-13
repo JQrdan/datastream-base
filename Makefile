@@ -49,6 +49,7 @@ build:
 	sudo docker build -f ../datastream-streams/Dockerfile-details -t datastream-stream-details:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-streams/Dockerfile-genres -t datastream-stream-genres:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-streams/Dockerfile-songs -t datastream-stream-songs:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-streams/Dockerfile-artists -t datastream-stream-artists:1.0.0 ../datastream-streams/
 	sudo docker build ../datastream-hooks -t datastream-topics-hook:1.0.0
 	sudo docker build ../datastream-metrics -t datastream-metrics:1.0.0
 	sudo docker build ../kafka-docker -t datastream-kafka:1.0.0
