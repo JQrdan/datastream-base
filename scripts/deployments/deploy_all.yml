@@ -124,11 +124,15 @@ services:
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
   topicshook:
-    image: datastream-topics-hook:1.0.0
+    image: datastream-hooks-topics:1.0.0
     depends_on: 
       - kafka1
       - kafka2
       - kafka3
+  connectorhook:
+    image: datastream-hooks-connectors:1.0.0
+    depends_on: 
+      - topicshook
   kafkaconnect:
     image: datastream-connect:1.0.0
     ports:
@@ -148,6 +152,10 @@ services:
     depends_on: 
       - topicshook
   artists:
+    image: datastream-stream-artists:1.0.0
+    depends_on: 
+      - topicshook
+  albums:
     image: datastream-stream-artists:1.0.0
     depends_on: 
       - topicshook
