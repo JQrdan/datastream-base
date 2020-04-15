@@ -156,7 +156,7 @@ services:
     depends_on: 
       - topicshook
   albums:
-    image: datastream-stream-artists:1.0.0
+    image: datastream-stream-albums:1.0.0
     depends_on: 
       - topicshook
   metrics:
