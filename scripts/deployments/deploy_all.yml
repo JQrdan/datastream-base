@@ -12,6 +12,8 @@ services:
       - "discovery.zen.ping.unicast.hosts=es01"
       - "network.host=0.0.0.0"
       - "node.max_local_storage_nodes=2"
+      - "XPACK_SECURITY_ENABLED=false"
+      - cluster.initial_master_nodes="elasticsearch"
     deploy:
       replicas: 3
       restart_policy:
@@ -108,6 +110,12 @@ services:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   topicshook:
     image: jqrdan/datastream-hooks-topics:1.0.0
     depends_on: 
