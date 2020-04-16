@@ -9,7 +9,7 @@ services:
     hostname: elasticsearch
     environment:
       - cluster.name=es-docker-cluster
-      - "discovery.zen.ping.unicast.hosts=tasks.es01"
+      - "discovery.zen.ping.unicast.hosts=es01"
       - "network.host=0.0.0.0"
       - "node.max_local_storage_nodes=2"
     deploy:
