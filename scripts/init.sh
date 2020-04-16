@@ -1,35 +1,27 @@
 #!/bin/bash
 
+# get docker key
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# add docker repo
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
 # update apt repo
 sudo apt-get update
 
-# install https tools
+# install all needed tools
 sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
     gnupg-agent \
-    software-properties-common
-
-# get docker key
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-# add docker repo
-sudo sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-# update apt repo now that we've added docker repo
-sudo apt-get update
-
-# install docker
-sudo apt-get install docker-ce
-
-# install java
-sudo apt-get install default-jre
-
-sudo apt-get install make
+    software-properties-common \
+    make \
+    default-jre \
+    docker-ce -y
 
 # set dns for zookeeper so script can create initial topics
 echo "127.0.0.1 zookeeper" > /etc/hosts

@@ -44,14 +44,30 @@ clone:
 	git clone https://github.com/JQrdan/kafka-docker.git ../kafka-docker
 
 build:
-	sudo docker build ../datastream-connect -t datastream-connect:1.0.0
-	sudo docker build ../datastream-app -t datastream-app:1.0.0
-	sudo docker build -f ../datastream-streams/Dockerfile-details -t datastream-stream-details:1.0.0 ../datastream-streams/
-	sudo docker build -f ../datastream-streams/Dockerfile-genres -t datastream-stream-genres:1.0.0 ../datastream-streams/
-	sudo docker build -f ../datastream-streams/Dockerfile-songs -t datastream-stream-songs:1.0.0 ../datastream-streams/
-	sudo docker build ../datastream-hooks -t datastream-topics-hook:1.0.0
-	sudo docker build ../datastream-metrics -t datastream-metrics:1.0.0
-	sudo docker build ../kafka-docker -t datastream-kafka:1.0.0
+	sudo docker build ../datastream-connect -t jqrdan/datastream-connect:1.0.0
+	sudo docker build ../datastream-app -t jqrdan/datastream-app:1.0.0
+	sudo docker build -f ../datastream-streams/Dockerfile-details -t jqrdan/datastream-stream-details:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-streams/Dockerfile-genres -t jqrdan/datastream-stream-genres:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-streams/Dockerfile-songs -t jqrdan/datastream-stream-songs:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-streams/Dockerfile-artists -t jqrdan/datastream-stream-artists:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-streams/Dockerfile-albums -t jqrdan/datastream-stream-albums:1.0.0 ../datastream-streams/
+	sudo docker build -f ../datastream-hooks/topics/Dockerfile -t jqrdan/datastream-hooks-topics:1.0.0 ../datastream-hooks
+	sudo docker build -f ../datastream-hooks/connectors/Dockerfile -t jqrdan/datastream-hooks-connectors:1.0.0 ../datastream-hooks
+	sudo docker build ../datastream-metrics -t jqrdan/datastream-metrics:1.0.0
+	sudo docker build ../kafka-docker -t jqrdan/datastream-kafka:1.0.0
+
+push:
+	docker push jqrdan/datastream-connect:1.0.0
+	docker push jqrdan/datastream-app:1.0.0
+	docker push jqrdan/datastream-stream-details:1.0.0
+	docker push jqrdan/datastream-stream-genres:1.0.0
+	docker push jqrdan/datastream-stream-songs:1.0.0
+	docker push jqrdan/datastream-stream-artists:1.0.0
+	docker push jqrdan/datastream-stream-albums:1.0.0
+	docker push jqrdan/datastream-hooks-topics:1.0.0 
+	docker push jqrdan/datastream-hooks-connectors:1.0.0 
+	docker push jqrdan/datastream-metrics:1.0.0
+	docker push jqrdan/datastream-kafka:1.0.0
 
 start:
 	sudo docker-compose -f scripts/deployments/deploy_all.yml up
