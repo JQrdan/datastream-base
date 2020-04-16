@@ -56,6 +56,19 @@ build:
 	sudo docker build ../datastream-metrics -t jqrdan/datastream-metrics:1.0.0
 	sudo docker build ../kafka-docker -t jqrdan/datastream-kafka:1.0.0
 
+push:
+	docker push jqrdan/datastream-connect:1.0.0
+	docker push jqrdan/datastream-app:1.0.0
+	docker push jqrdan/datastream-stream-details:1.0.0
+	docker push jqrdan/datastream-stream-genres:1.0.0
+	docker push jqrdan/datastream-stream-songs:1.0.0
+	docker push jqrdan/datastream-stream-artists:1.0.0
+	docker push jqrdan/datastream-stream-albums:1.0.0
+	docker push jqrdan/datastream-hooks-topics:1.0.0 
+	docker push jqrdan/datastream-hooks-connectors:1.0.0 
+	docker push jqrdan/datastream-metrics:1.0.0
+	docker push jqrdan/datastream-kafka:1.0.0
+
 start:
 	sudo docker-compose -f scripts/deployments/deploy_all.yml up
 

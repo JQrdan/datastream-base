@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   app:
-    image: datastream-app:1.0.0
+    image: jqrdan/datastream-app:1.0.0
     ports:
       - "3000:3000"
   es01:
@@ -68,7 +68,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_SYNC_LIMIT: 2
   kafka1:
-    image: datastream-kafka:1.0.0
+    image: jqrdan/datastream-kafka:1.0.0
     ports:
       - "9092:9092"
       - "8777:8778"
@@ -84,7 +84,7 @@ services:
     volumes:
       - kafka01:/var/lib/kafka/data
   kafka2:
-    image: datastream-kafka:1.0.0
+    image: jqrdan/datastream-kafka:1.0.0
     ports:
       - "9093:9093"
       - "8778:8778"
@@ -100,7 +100,7 @@ services:
     volumes:
       - kafka02:/var/lib/kafka/data
   kafka3:
-    image: datastream-kafka:1.0.0
+    image: jqrdan/datastream-kafka:1.0.0
     ports:
       - "9094:9094"
       - "8779:8778"
@@ -124,43 +124,43 @@ services:
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
   topicshook:
-    image: datastream-hooks-topics:1.0.0
+    image: jqrdan/datastream-hooks-topics:1.0.0
     depends_on: 
       - kafka1
       - kafka2
       - kafka3
   connectorhook:
-    image: datastream-hooks-connectors:1.0.0
+    image: jqrdan/datastream-hooks-connectors:1.0.0
     depends_on: 
       - topicshook
   kafkaconnect:
-    image: datastream-connect:1.0.0
+    image: jqrdan/datastream-connect:1.0.0
     ports:
       - "8083:8083"
     depends_on: 
       - topicshook
   details:
-    image: datastream-stream-details:1.0.0
+    image: jqrdan/datastream-stream-details:1.0.0
     depends_on: 
       - topicshook
   genres:
-    image: datastream-stream-genres:1.0.0
+    image: jqrdan/datastream-stream-genres:1.0.0
     depends_on: 
       - topicshook
   songs:
-    image: datastream-stream-songs:1.0.0
+    image: jqrdan/datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
   artists:
-    image: datastream-stream-artists:1.0.0
+    image: jqrdan/datastream-stream-artists:1.0.0
     depends_on: 
       - topicshook
   albums:
-    image: datastream-stream-albums:1.0.0
+    image: jqrdan/datastream-stream-albums:1.0.0
     depends_on: 
       - topicshook
   metrics:
-    image: datastream-metrics:1.0.0
+    image: jqrdan/datastream-metrics:1.0.0
     depends_on: 
       - kafka1
       - kafka2
