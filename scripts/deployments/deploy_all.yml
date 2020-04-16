@@ -121,10 +121,10 @@ services:
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
-      - "88500:8500"
+      - "8082:8082"
     environment:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_REST_LISTENERS: http://kafkarest:8500
+      KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
     deploy:
       replicas: 1
