@@ -179,7 +179,11 @@ services:
       - es03
     
 volumes:
-  elastic01:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03:
     driver: local
   kafka01:
     driver: local
