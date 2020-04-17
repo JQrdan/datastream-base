@@ -71,6 +71,11 @@ services:
       - zookeeper
     volumes:
       - kafka01:/var/lib/kafka/data
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   kafka2:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
@@ -87,6 +92,11 @@ services:
       - zookeeper
     volumes:
       - kafka02:/var/lib/kafka/data
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   kafka3:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
@@ -103,6 +113,11 @@ services:
       - zookeeper
     volumes:
       - kafka03:/var/lib/kafka/data
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
@@ -111,6 +126,12 @@ services:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   topicshook:
     image: jqrdan/datastream-hooks-topics:1.0.0
     depends_on: 
@@ -170,8 +191,3 @@ volumes:
     driver: local
   kafka03:
     driver: local
-
-networks:
-  default:
-    external:
-      name: datastream-network
