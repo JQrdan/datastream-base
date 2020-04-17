@@ -13,7 +13,7 @@ services:
       - discovery.seed_hosts=es02,es03
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=false
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
+      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
     volumes:
       - data01:/usr/share/elasticsearch/data
     ports:
@@ -26,7 +26,7 @@ services:
       - discovery.seed_hosts=es01,es03
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=false
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
+      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
     volumes:
       - data02:/usr/share/elasticsearch/data
   es03:
@@ -37,7 +37,7 @@ services:
       - discovery.seed_hosts=es01,es02
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=false
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
+      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
     volumes:
       - data03:/usr/share/elasticsearch/data
   kibana:
