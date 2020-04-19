@@ -142,7 +142,7 @@ services:
       - "8082:8082"
     environment:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_REST_LISTENERS: http://kafkarest:8082
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082
       KAFKA_REST_HOST_NAME: kafkarest
     networks:
       - datastream_network
@@ -168,36 +168,66 @@ services:
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   details:
     image: jqrdan/datastream-stream-details:1.0.0
     depends_on: 
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   genres:
     image: jqrdan/datastream-stream-genres:1.0.0
     depends_on: 
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   songs:
     image: jqrdan/datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   artists:
     image: jqrdan/datastream-stream-artists:1.0.0
     depends_on: 
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   albums:
     image: jqrdan/datastream-stream-albums:1.0.0
     depends_on: 
       - topicshook
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   metrics:
     image: jqrdan/datastream-metrics:1.0.0
     depends_on: 
@@ -209,6 +239,11 @@ services:
       - es03
     networks:
       - datastream_network
+    deploy:
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
     
 volumes:
   data01:
