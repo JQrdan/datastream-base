@@ -47,8 +47,6 @@ services:
       - bootstrap.memory_lock=false
     volumes:
       - data01:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
     networks:
       - datastream_network
     deploy:
