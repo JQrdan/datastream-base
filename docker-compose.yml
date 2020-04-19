@@ -40,7 +40,7 @@ services:
       - xpack.security.enabled=false
       - bootstrap.memory_lock=false
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - data02:/usr/share/elasticsearch/data
     networks:
       - datastream_network
     deploy:
