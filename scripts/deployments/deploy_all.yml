@@ -4,6 +4,8 @@ services:
     image: jqrdan/datastream-app:1.0.0
     ports:
       - "3000:3000"
+    networks:
+      - datastream_network
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     hostname: elasticsearch
@@ -18,6 +20,8 @@ services:
       - data01:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+    networks:
+      - datastream_network
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     environment:
@@ -29,6 +33,8 @@ services:
       - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
     volumes:
       - data02:/usr/share/elasticsearch/data
+    networks:
+      - datastream_network
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     environment:
@@ -40,6 +46,8 @@ services:
       - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
     volumes:
       - data03:/usr/share/elasticsearch/data
+    networks:
+      - datastream_network
   kibana:
     image: docker.elastic.co/kibana/kibana:7.5.2
     ports:
@@ -47,6 +55,8 @@ services:
     environment:
       SERVER_NAME: kibana
       ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
+    networks:
+      - datastream_network
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
@@ -55,6 +65,8 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_SYNC_LIMIT: 2
+    networks:
+      - datastream_network
   kafka1:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
@@ -76,6 +88,8 @@ services:
         delay: 30s
         max_attempts: 10
         window: 120s
+    networks:
+      - datastream_network
   kafka2:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
@@ -97,6 +111,8 @@ services:
         delay: 30s
         max_attempts: 10
         window: 120s
+    networks:
+      - datastream_network
   kafka3:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
@@ -118,6 +134,8 @@ services:
         delay: 30s
         max_attempts: 10
         window: 120s
+    networks:
+      - datastream_network
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
@@ -126,48 +144,60 @@ services:
       KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_REST_LISTENERS: http://kafkarest:8082
       KAFKA_REST_HOST_NAME: kafkarest
-    deploy:
-      replicas: 1
-      restart_policy:
-        delay: 30s
-        max_attempts: 10
-        window: 120s
+    networks:
+      - datastream_network
   topicshook:
     image: jqrdan/datastream-hooks-topics:1.0.0
     depends_on: 
       - kafka1
       - kafka2
       - kafka3
+    networks:
+      - datastream_network
   connectorhook:
     image: jqrdan/datastream-hooks-connectors:1.0.0
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   kafkaconnect:
     image: jqrdan/datastream-connect:1.0.0
     ports:
       - "8083:8083"
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   details:
     image: jqrdan/datastream-stream-details:1.0.0
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   genres:
     image: jqrdan/datastream-stream-genres:1.0.0
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   songs:
     image: jqrdan/datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
+      networks:
+      - datastream_network
   artists:
     image: jqrdan/datastream-stream-artists:1.0.0
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   albums:
     image: jqrdan/datastream-stream-albums:1.0.0
     depends_on: 
       - topicshook
+    networks:
+      - datastream_network
   metrics:
     image: jqrdan/datastream-metrics:1.0.0
     depends_on: 
@@ -177,6 +207,8 @@ services:
       - es01
       - es02
       - es03
+    networks:
+      - datastream_network
     
 volumes:
   data01:
@@ -191,3 +223,7 @@ volumes:
     driver: local
   kafka03:
     driver: local
+
+networks:
+  datastream_network:
+    driver: overlay
