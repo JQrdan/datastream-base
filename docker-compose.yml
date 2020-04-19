@@ -14,10 +14,7 @@ services:
       - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
       - discovery.seed_hosts=es02
       - cluster.initial_master_nodes=es01,es02
-      - xpack.ml.enabled=false
-      - xpack.monitoring.enabled=false
       - xpack.security.enabled=false
-      - xpack.watcher.enabled=false
       - bootstrap.memory_lock=false
     volumes:
       - data01:/usr/share/elasticsearch/data
@@ -27,7 +24,7 @@ services:
       - datastream_network
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -40,10 +37,7 @@ services:
       - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
       - discovery.seed_hosts=es01
       - cluster.initial_master_nodes=es01,es02
-      - xpack.ml.enabled=false
-      - xpack.monitoring.enabled=false
       - xpack.security.enabled=false
-      - xpack.watcher.enabled=false
       - bootstrap.memory_lock=false
     volumes:
       - data01:/usr/share/elasticsearch/data
@@ -51,7 +45,7 @@ services:
       - datastream_network
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       restart_policy:
         delay: 30s
         max_attempts: 10
