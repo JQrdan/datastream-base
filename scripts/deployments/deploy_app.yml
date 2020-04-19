@@ -1,8 +1,0 @@
-version: '3.7'
-services:
-  details:
-    image: datastream-app:1.0.0
-    extra_hosts:
-      - "kafka1:${KAFKA}"
-      - "kafka2:${KAFKA}"
-      - "kafka3:${KAFKA}"
