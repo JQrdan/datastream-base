@@ -184,7 +184,7 @@ services:
     image: jqrdan/datastream-stream-songs:1.0.0
     depends_on: 
       - topicshook
-      networks:
+    networks:
       - datastream_network
   artists:
     image: jqrdan/datastream-stream-artists:1.0.0
