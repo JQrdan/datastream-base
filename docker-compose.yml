@@ -9,10 +9,10 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     environment:
-      node.name: d_elasticsearch.{{.Task.Slot}}
+      node.name: es0{{.Task.Slot}}
       discovery.type: ''
       discovery.seed_hosts: tasks.elasticsearch
-      cluster.initial_master_nodes: d_elasticsearch.1,d_elasticsearch.2,d_elasticsearch.3
+      cluster.initial_master_nodes: es01,es02,es03
       node.max_local_storage_nodes: '3'
       network.publish_host: _eth0_
     volumes:
