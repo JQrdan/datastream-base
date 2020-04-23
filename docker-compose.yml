@@ -6,12 +6,12 @@ services:
       - "3000:3000"
     networks:
       - datastream_network
-  elasticsearch:
+  es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     environment:
       node.name: es0{{.Task.Slot}}
       discovery.type: ''
-      discovery.seed_hosts: tasks.elasticsearch
+      discovery.seed_hosts: tasks.es01
       cluster.initial_master_nodes: es01,es02,es03
       node.max_local_storage_nodes: '3'
       network.publish_host: _eth0_
@@ -35,7 +35,7 @@ services:
       - "5601:5601"
     environment:
       SERVER_NAME: kibana
-      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+      ELASTICSEARCH_HOSTS: '["http://es01:9200"]'
     networks:
       - datastream_network
   zookeeper:
@@ -161,6 +161,8 @@ services:
     networks:
       - datastream_network
     deploy:
+      mode: replicated
+      replicas: 3
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -172,6 +174,8 @@ services:
     networks:
       - datastream_network
     deploy:
+      mode: replicated
+      replicas: 3
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -183,6 +187,8 @@ services:
     networks:
       - datastream_network
     deploy:
+      mode: replicated
+      replicas: 3
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -194,6 +200,8 @@ services:
     networks:
       - datastream_network
     deploy:
+      mode: replicated
+      replicas: 3
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -205,6 +213,8 @@ services:
     networks:
       - datastream_network
     deploy:
+      mode: replicated
+      replicas: 3
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -215,7 +225,7 @@ services:
       - kafka1
       - kafka2
       - kafka3
-      - elasticsearch
+      - es01
     networks:
       - datastream_network
     deploy:
