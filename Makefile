@@ -53,6 +53,7 @@ build:
 	sudo docker build -f ../datastream-streams/Dockerfile-albums -t jqrdan/datastream-stream-albums:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-hooks/topics/Dockerfile -t jqrdan/datastream-hooks-topics:1.0.0 ../datastream-hooks
 	sudo docker build -f ../datastream-hooks/connectors/Dockerfile -t jqrdan/datastream-hooks-connectors:1.0.0 ../datastream-hooks
+	sudo docker build -f ../datastream-hooks/dashboards/Dockerfile -t jqrdan/datastream-hooks-dashboards:1.0.0 ../datastream-hooks
 	sudo docker build ../datastream-metrics -t jqrdan/datastream-metrics:1.0.0
 	sudo docker build ../kafka-docker -t jqrdan/datastream-kafka:1.0.0
 

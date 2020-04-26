@@ -15,6 +15,7 @@ services:
       cluster.initial_master_nodes: es01,es02,es03
       node.max_local_storage_nodes: '3'
       network.publish_host: _eth0_
+      xpack.monitoring.collection.enabled: true
     volumes:
       - data01:/usr/share/elasticsearch/data
     ports:
@@ -133,6 +134,12 @@ services:
       - kafka1
       - kafka2
       - kafka3
+    networks:
+      - datastream_network
+  dashboardshook:
+    image: jqrdan/datastream-hooks-dashboards:1.0.0
+    depends_on: 
+      - kibana
     networks:
       - datastream_network
   connectorhook:
