@@ -42,4 +42,6 @@ start:
 
 stop:
 	sudo docker stack rm datastream
-	
+
+clean:
+	sudo docker volume prune
