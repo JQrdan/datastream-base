@@ -165,8 +165,7 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: replicated
-      replicas: 3
+      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -178,21 +177,7 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: replicated
-      replicas: 3
-      restart_policy:
-        delay: 30s
-        max_attempts: 10
-        window: 120s
-  songs:
-    image: jqrdan/datastream-stream-songs:1.0.0
-    depends_on: 
-      - topicshook
-    networks:
-      - datastream_network
-    deploy:
-      mode: replicated
-      replicas: 3
+      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -204,8 +189,7 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: replicated
-      replicas: 3
+      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -217,8 +201,7 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: replicated
-      replicas: 3
+      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
