@@ -12,7 +12,6 @@ build:
 	sudo docker build ../datastream-app -t jqrdan/datastream-app:1.0.0
 	sudo docker build -f ../datastream-streams/Dockerfile-details -t jqrdan/datastream-stream-details:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-streams/Dockerfile-genres -t jqrdan/datastream-stream-genres:1.0.0 ../datastream-streams/
-	sudo docker build -f ../datastream-streams/Dockerfile-songs -t jqrdan/datastream-stream-songs:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-streams/Dockerfile-artists -t jqrdan/datastream-stream-artists:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-streams/Dockerfile-albums -t jqrdan/datastream-stream-albums:1.0.0 ../datastream-streams/
 	sudo docker build -f ../datastream-hooks/topics/Dockerfile -t jqrdan/datastream-hooks-topics:1.0.0 ../datastream-hooks
@@ -26,11 +25,11 @@ push:
 	docker push jqrdan/datastream-app:1.0.0
 	docker push jqrdan/datastream-stream-details:1.0.0
 	docker push jqrdan/datastream-stream-genres:1.0.0
-	docker push jqrdan/datastream-stream-songs:1.0.0
 	docker push jqrdan/datastream-stream-artists:1.0.0
 	docker push jqrdan/datastream-stream-albums:1.0.0
 	docker push jqrdan/datastream-hooks-topics:1.0.0 
 	docker push jqrdan/datastream-hooks-connectors:1.0.0 
+	docker push jqrdan/datastream-hooks-dashboards:1.0.0
 	docker push jqrdan/datastream-metrics:1.0.0
 	docker push jqrdan/datastream-kafka:1.0.0
 
@@ -38,7 +37,7 @@ pull:
 	sudo docker-compose pull
 
 start:
-	sudo docker stack deploy datastream -c docker-compose.yaml
+	sudo docker stack deploy datastream -c docker-compose.yml
 
 stop:
 	sudo docker stack rm datastream
