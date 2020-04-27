@@ -23,9 +23,6 @@ sudo apt-get install \
     default-jre \
     docker-ce -y
 
-# set dns for zookeeper so script can create initial topics
-echo "127.0.0.1 zookeeper" > /etc/hosts
-
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
