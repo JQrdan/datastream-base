@@ -60,6 +60,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9092
       KAFKA_BROKER_ID: 1
       KAFKA_JOLOKIA_PORT: 8778
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
     depends_on:
       - zookeeper
     volumes:
@@ -82,6 +83,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_BROKER_ID: 2
       KAFKA_JOLOKIA_PORT: 8778
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
     depends_on:
       - zookeeper
     volumes:
@@ -104,6 +106,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_BROKER_ID: 3
       KAFKA_JOLOKIA_PORT: 8778
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
     depends_on:
       - zookeeper
     volumes:
