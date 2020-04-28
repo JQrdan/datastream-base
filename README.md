@@ -13,6 +13,8 @@ This distributed system is created using a Docker swarm. To start the system, yo
 
 I have tested these on Ubuntu 19.10 on 3 compute nodes with 8vcpus and 52GB ram each. I would recommend using the same. To initialise these nodes, run `./scripts/init.sh` on each one. This will install the appropriate tools needed for this project.
 
+(NOTE: depending on your permissions, you may need to run `docker` as `sudo docker`)
+
 Once installed, a docker swarm needs to be created. You can do this by running `docker swarm init` on the master node. You will then need to run the command that the swarm init supplies on each worker nodes.
 
 To check that the swarm is set up correctly, run `docker node ls`. This should list the three compute nodes.
