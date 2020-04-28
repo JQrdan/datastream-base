@@ -68,6 +68,8 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock  
+    networks:
+      - datastream_network
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
