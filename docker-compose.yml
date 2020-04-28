@@ -127,7 +127,6 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -139,7 +138,6 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -151,7 +149,6 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
@@ -163,7 +160,6 @@ services:
     networks:
       - datastream_network
     deploy:
-      mode: global
       restart_policy:
         delay: 30s
         max_attempts: 10
