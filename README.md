@@ -6,7 +6,6 @@ Base repo for Final year project at University of Exeter. This includes the depl
 
   - Docker 
   - If on Windows, docker-compose (included with mac/linux version of docker)
-  - Build and tag the datastream-connect image from this repo: [datastream-connect](https://github.com/JQrdan/datastream-connect) 
 
 ### How to run
 
@@ -36,7 +35,7 @@ There are two other repositories that you will need to have the full system. The
 
 [datastream-producer](https://github.com/JQrdan/datastream-producer)  - for producing data into the system
 
-These repositorys are all part of the project but are not necessary to run it as they docker images are hosted on dockerhub.
+The rest of these repositorys are all part of the project but are not necessary to run it as they docker images are hosted on dockerhub.
 
 [datastream-connect](https://github.com/JQrdan/datastream-connect) 
 
