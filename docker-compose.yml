@@ -70,6 +70,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock  
     networks:
       - datastream_network
+    deploy:
+      mode: global
+      restart_policy:
+        delay: 30s
+        max_attempts: 10
+        window: 120s
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
