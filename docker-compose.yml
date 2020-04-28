@@ -48,75 +48,26 @@ services:
       ZOOKEEPER_SYNC_LIMIT: 2
     networks:
       - datastream_network
-  kafka1:
+  kafka:
     image: jqrdan/datastream-kafka:1.0.0
     ports:
-      - "9092:9092"
-      - "8777:8778"
+      - target: 9094
+        published: 9094
+        protocol: tcp
+        mode: host
+      - target: 8778
+        publichsed: 8778
+        protocol: tcp
+        mode: host
     environment:
+      HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka1:9092
-      KAFKA_LISTENERS: PLAINTEXT://:9092
-      KAFKA_BROKER_ID: 1
-      KAFKA_JOLOKIA_PORT: 8778
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-    depends_on:
-      - zookeeper
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     volumes:
-      - kafka01:/var/lib/kafka/data
-    deploy:
-      restart_policy:
-        delay: 30s
-        max_attempts: 10
-        window: 120s
-    networks:
-      - datastream_network
-  kafka2:
-    image: jqrdan/datastream-kafka:1.0.0
-    ports:
-      - "9093:9093"
-      - "8778:8778"
-    environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:9093
-      KAFKA_LISTENERS: PLAINTEXT://:9093
-      KAFKA_BROKER_ID: 2
-      KAFKA_JOLOKIA_PORT: 8778
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-    depends_on:
-      - zookeeper
-    volumes:
-      - kafka02:/var/lib/kafka/data
-    deploy:
-      restart_policy:
-        delay: 30s
-        max_attempts: 10
-        window: 120s
-    networks:
-      - datastream_network
-  kafka3:
-    image: jqrdan/datastream-kafka:1.0.0
-    ports:
-      - "9094:9094"
-      - "8779:8778"
-    environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka3:9094
-      KAFKA_LISTENERS: PLAINTEXT://:9094
-      KAFKA_BROKER_ID: 3
-      KAFKA_JOLOKIA_PORT: 8778
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-    depends_on:
-      - zookeeper
-    volumes:
-      - kafka03:/var/lib/kafka/data
-    deploy:
-      restart_policy:
-        delay: 30s
-        max_attempts: 10
-        window: 120s
-    networks:
-      - datastream_network
+      - /var/run/docker.sock:/var/run/docker.sock  
   kafkarest:
     image:  confluentinc/cp-kafka-rest:5.4.0
     ports: 
