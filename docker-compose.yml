@@ -88,10 +88,6 @@ services:
       - datastream_network
   topicshook:
     image: jqrdan/datastream-hooks-topics:1.0.0
-    depends_on: 
-      - kafka1
-      - kafka2
-      - kafka3
     networks:
       - datastream_network
   dashboardshook:
@@ -170,9 +166,6 @@ services:
   metrics:
     image: jqrdan/datastream-metrics:1.0.0
     depends_on: 
-      - kafka1
-      - kafka2
-      - kafka3
       - es01
     networks:
       - datastream_network
@@ -184,12 +177,6 @@ services:
     
 volumes:
   data01:
-    driver: local
-  kafka01:
-    driver: local
-  kafka02:
-    driver: local
-  kafka03:
     driver: local
 
 networks:
