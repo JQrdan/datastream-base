@@ -56,7 +56,7 @@ services:
         protocol: tcp
         mode: host
       - target: 8778
-        publichsed: 8778
+        published: 8778
         protocol: tcp
         mode: host
     environment:
