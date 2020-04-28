@@ -2,11 +2,6 @@
 
 Base repo for Final year project at University of Exeter. This includes the deployment script to run the full system.
 
-### Prereqs
-
-  - Docker 
-  - If on Windows, docker-compose (included with mac/linux version of docker)
-
 ### How to run
 
 This distributed system is created using a Docker swarm. To start the system, you will need at least one master node (called `master-1`) and two worker nodes (called `worker-1` and `worker-2`).
