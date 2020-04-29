@@ -42,7 +42,7 @@ There are two other repositories that you will need to have the full system. The
 
 [datastream-producer](https://github.com/JQrdan/datastream-producer)  - for producing data into the system
 
-The rest of these repositorys are all part of the project but are not necessary to run it as they docker images are hosted on dockerhub.
+The rest of these repositorys are all part of the project but are not necessary to run it as their docker images are hosted on dockerhub.
 
 [datastream-connect](https://github.com/JQrdan/datastream-connect) 
 
