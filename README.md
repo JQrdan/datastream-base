@@ -57,3 +57,9 @@ The rest of these repositorys are all part of the project but are not necessary 
 ### Resetting if things go wrong
 
 On the off chance that something fails on start up that won't aromatically recover, you will need to stop the system with `make stop`. After all services have stopped, you will then need to run `make clean` on each node to clear out the volumes. After this is done, the system can be started again.
+
+It is also possible to restart individual services manually by scaling them down to 0 and then back up again.
+
+### Service scaling
+
+If you have the resources, you can scale up some of the services to increase performance. To do this, run: `docker service scale <service-name>=<number of instances>`
