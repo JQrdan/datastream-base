@@ -8,6 +8,16 @@ This distributed system is created using a Docker swarm. To start the system, yo
 
 I have tested these on Ubuntu 19.10 on 3 compute nodes with 8vcpus and 52GB ram each. I would recommend using the same. To initialise these nodes, run `./scripts/init.sh` on each one. This will install the appropriate tools needed for this project.
 
+You will also need to make sure that ports 9092, 9094, 5601, and the generated elastic port are open. The quickest method is to allow all traffic across all ports.
+
+It is recommended that you also configure your /etc/hosts file to be like follows:
+
+```
+<master-1-node-ip> kafka es01 kibana master-1
+<worker-1-node-ip> worker-1
+<worker-2-node-ip> worker-2
+```
+
 (NOTE: depending on your permissions, you may need to run `docker` as `sudo docker`)
 
 Once installed, a docker swarm needs to be created. You can do this by running `docker swarm init` on the master node. You will then need to run the command that the swarm init supplies on each worker nodes.
