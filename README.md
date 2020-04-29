@@ -10,7 +10,7 @@ I have tested these on Ubuntu 19.10 on 3 compute nodes with 8vcpus and 52GB ram 
 
 You will also need to make sure that ports 9092, 9094, 5601, and the generated elastic port are open. The quickest method is to allow all traffic across all ports.
 
-It is recommended that you also configure your /etc/hosts file to be like follows:
+It is recommended that you also configure your /etc/hosts file to be as follows:
 
 ```
 <master-1-node-ip> kafka es01 kibana master-1
