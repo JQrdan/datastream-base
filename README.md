@@ -53,3 +53,7 @@ The rest of these repositorys are all part of the project but are not necessary 
 [datastream-metrics](https://github.com/JQrdan/datastream-metrics) 
 
 [datastream-streams](https://github.com/JQrdan/datastream-streams) 
+
+### Resetting if things go wrong
+
+On the off chance that something fails on start up that won't aromatically recover, you will need to stop the system with `make stop`. After all services have stopped, you will then need to run `make clean` on each node to clear out the volumes. After this is done, the system can be started again.
